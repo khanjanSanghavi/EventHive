@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Management App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <style>
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body ng-app="eventApp">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">EventApp</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#/about">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#/contact">Contact Us</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item" ng-show="!isLoggedIn">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="nav-item" ng-show="isLoggedIn">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div ng-view></div>
+    </div>
+
+    <script>
+        angular.module('eventApp', ['ngRoute'])
+        .config(function($routeProvider) {
+            $routeProvider
+            .when('/', {
+                templateUrl: 'home.html',
+                controller: 'HomeController'
+            })
+            .when('/about', {
+                templateUrl: 'about.html'
+            })
+            .when('/contact', {
+                templateUrl: 'contact.html'
+            })
+            .when('/event/:eventId', {
+                templateUrl: 'event-info.html',
+                controller: 'EventInfoController'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
+        })
+        .controller('HomeController', function($scope) {
+            // Controller logic for the home page
+            $scope.isLoggedIn = false; // Simulate user login state
+        })
+        .controller('EventInfoController', function($scope, $routeParams) {
+            // Controller logic for displaying event details
+            $scope.eventId = $routeParams.eventId;
+            // Fetch event details based on eventId and populate $scope.event
+            $scope.event = {
+                id: $scope.eventId,
+                title: 'Event ' + $scope.eventId,
+                description: 'This is event ' + $scope.eventId,
+                date: '2024-03-01', // Sample date
+                image: 'https://via.placeholder.com/150' // Sample image URL
+            };
+        });
+    </script>
+
+    <script type="text/ng-template" id="home.html">
+        <h1>Welcome to Event Management App</h1>
+        <p>This is the home page.</p>
+    </script>
+
+    <script type="text/ng-template" id="about.html">
+        <h1>About Us</h1>
+        <p>This is the about us page.</p>
+    </script>
+
+    <script type="text/ng-template" id="contact.html">
+        <h1>Contact Us</h1>
+        <p>This is the contact us page.</p>
+    </script>
+
+    <script type="text/ng-template" id="event-info.html">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{event.title}}</h5>
+                <p class="card-text">{{event.description}}</p>
+                <p class="card-text">Date: {{event.date}}</p>
+                <!-- Add more event details here -->
+                <a href="#/" class="btn btn-primary">Back</a>
+            </div>
+        </div>
+    </script>
+
+</body>
+</html>

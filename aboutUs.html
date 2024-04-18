@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EventHive</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.0);
+            border-bottom: 0px solid #e9ecef;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 400;
+        }
+        .navbar-brand {
+            font-weight: 400;
+            color: white !important;
+        }
+        footer {
+            color: #1E0342;
+            background-color: rgba(255, 255, 255, 0.12); /* Transparent white */
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 50px; /* Adjust height as needed */
+            text-align: center;
+            padding: 5px 0;
+}
+        /* Custom Styles */
+        .about-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            margin-top: 50px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            position: fixed;
+            left: 20px; /* Adjusted to provide space from the left */
+            top: 50px;
+            height: calc(100vh - 150px); /* Adjusted height to fit above footer */
+            width: 40%; /* Adjusted width */
+            overflow-y: auto; /* Add scrollbar if content exceeds container height */
+            z-index: 2; /* Ensure it's above the video and navbar */
+        }
+
+        .slider-frame {
+            position: fixed;
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+            width: 30%; /* Adjust the width of the slider-frame */
+            z-index: 2;
+        }
+
+        .slide-images {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-container {
+            margin-bottom: 10px;
+            opacity: 50%;
+            
+        }
+
+        .img-container img {
+            
+            width: 650px;
+            height: 435px;
+            display: none; /* Hide all images initially */
+            animation: fadeInOut 10s infinite; /* Add fade-in animation */
+            top: 50px;
+           
+            padding: 20px;
+            margin-top: 50px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;}
+
+        /* Display the first image initially */
+        .img-container img:first-child {
+            display: block;
+        }
+        /* Custom Styles */
+
+/* Keyframe animation for fade-in and fade-out */
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+    </style>
+</head>
+<body> 
+    <video autoplay muted loop>
+        <source src="./image/soft_blur_bg.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#" style="color: white;">EventHive</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="profile.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contactus.php">Contact Us</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="eventPlannerLogin.php">Become an Event Planner</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="userProfileDisp.php">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="welcome-section">
+        <!-- Add your content here -->
+    </div>
+    <!-- image slider  -->
+    <div class="slider-frame">
+        <div class="slide-images">
+            <div class="img-container">
+                <img src="./image/slideimg1.jpeg">
+            </div>
+            <div class="img-container">
+                <img src="./image/slideimg22.jpg">
+            </div>
+            <div class="img-container">
+                <img src="./image/slideimg4.jpg">
+            </div>
+        </div>
+    </div>
+    <!-- About Us Container -->
+    <div class="about-container">
+        <h2>About Us</h2>
+        <p>Welcome to EventHive, your ultimate destination for seamless event management. Whether you're an enthusiastic attendee or a seasoned planner, we've got you covered. Discover, register, and pay for events effortlessly, or unleash your creativity as an event organizer. With EventHive, every occasion becomes unforgettable. Join us and let's create memorable experiences together.</p>
+        <!-- Add more content as needed -->
+    </div>
+
+    <!-- Your content goes here -->
+
+    <footer>
+        <p>Created by Khanjan | Vishnu | Vaishvi</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        // Function to handle slideshow
+        function slideshow() {
+            var images = document.querySelectorAll('.img-container img');
+            var current = 0;
+
+            // Hide all images except the first one
+            for (var i = 1; i < images.length; i++) {
+                images[i].style.display = 'none';
+            }
+
+            // Function to show next image
+            function nextImage() {
+                images[current].style.display = 'none';
+                current = (current + 1) % images.length;
+                images[current].style.display = 'block';
+            }
+
+            // Set interval to change image every 3 seconds
+            setInterval(nextImage, 3000);
+        }
+
+        // Call slideshow function when the page is loaded
+        window.onload = slideshow;
+    </script>
+</body>
+</html>
